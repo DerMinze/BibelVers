@@ -1,10 +1,14 @@
 package com.example.bibelvers;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 
 public class MainActivity extends Activity {
+	
+	public final static String EXTRA_MESSAGE = "com.example.bibleverse.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,4 +24,11 @@ public class MainActivity extends Activity {
         return true;
     }
     
+    public void get_verse(View view) {
+    	Intent intent = new Intent(this, DisplayBibleVerse.class);
+    	//EditText editText = (EditText) findViewById(R.id.edit_message);
+        //String message = editText.getText().toString();
+        //intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
 }

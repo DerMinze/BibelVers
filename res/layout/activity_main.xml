@@ -8,4 +8,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
+    <Button
+        android:id="@+id/new_verse"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:onClick="get_verse"
+        android:text="@string/new_verse_button" />
+
 </RelativeLayout>
