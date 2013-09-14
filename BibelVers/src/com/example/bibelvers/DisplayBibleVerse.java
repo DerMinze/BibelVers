@@ -25,14 +25,13 @@ public class DisplayBibleVerse extends Activity {
 	
 	private static final String DEBUG_TAG = "HttpExample";
 	public final String DOWNLOADFROM = "http://www.biblegateway.com/votd/get/?format=atom";
-	//public final String DOWNLOADFROM = "http://www.google.com/";
 	public TextView textView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_bible_verse);
-		// Show the Up button in the action bar.
+		
 		textView = (TextView) findViewById(R.id.bible_verse);
 		setupActionBar();
 		GetVerse();
@@ -48,19 +47,10 @@ public class DisplayBibleVerse extends Activity {
 		}
 	}
 
-	
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}
@@ -68,6 +58,8 @@ public class DisplayBibleVerse extends Activity {
 	}
 	
 	public void GetVerse() {
+		// Check if connected to the Internet.
+		// Starts downloading process.
 		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 		if(networkInfo != null && networkInfo.isConnected()) {
@@ -76,17 +68,12 @@ public class DisplayBibleVerse extends Activity {
 			textView.setText("No network connection available.");
 		}
 	}
-	
-	public void SaveVerse () {
-		
-	}
 
 	private class MyAsyncClass extends AsyncTask<String, Void, String> {
 
 		@Override
 		protected String doInBackground(String... urls) {
-			
-			// params comes from execute() call: params[0] is the url
+			// Initiate download from url.
 			try {
 				return downloadUrl(urls[0]);
 			} catch (IOException e) {
@@ -96,26 +83,21 @@ public class DisplayBibleVerse extends Activity {
 		
 		@Override
 		protected void onPostExecute(String result) {
+			// Sets text in textView.
 			textView.setText(result);
 		}
 		
 		private String downloadUrl (String myurl) throws IOException {
+			// Opens connection to URL and downloads.
 			InputStream is = null;
 			
 			try {
 				URL url = new URL(myurl);
-				System.out.println("DID WE COME HER NO?, -1");
-
 				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-				System.out.println("DID WE COME HER NO?, -2");
 				conn.setReadTimeout(10000);
-				System.out.println("DID WE COME HER NO?, -3");
 				conn.setConnectTimeout(15000);
-				System.out.println("DID WE COME HER NO?, -4");
 				conn.setRequestMethod("GET");
-				System.out.println("DID WE COME HER NO?, -5");
 				conn.setDoInput(true);
-				System.out.println("DID WE COME HER NO?, -23");
 				// Starts the query
 				
 				conn.connect();
@@ -134,19 +116,14 @@ public class DisplayBibleVerse extends Activity {
 		}
 		
 		public String readIt(InputStream stream) throws IOException, UnsupportedEncodingException {
-			//Reader reader = null;
+			// Downloads the parts of the text I need.
 			String str = "";
-			//reader = new InputStreamReader(stream, "UTF-8");
 			BufferedReader buffer = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
-			System.out.println("Where's my line!?");
 			
 			while((str = buffer.readLine()) != null) {
 				if(str.indexOf("content") > -1) {
 					String temp = str;
 					String bibelVerse = manipulateVerse(temp);
-					
-					System.out.println(temp);
-					//str = str.split("]").toString();
 					return bibelVerse;
 				}
 			}
@@ -155,6 +132,7 @@ public class DisplayBibleVerse extends Activity {
 	}
 	
 	public String manipulateVerse(String verse) {
+		// Manipulates the downloaded string to get what I want.
 		int i = 0;
 		int j = 0;
 		boolean quit = false;

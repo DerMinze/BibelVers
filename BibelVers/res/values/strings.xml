@@ -8,5 +8,8 @@
     <string name="save_verse">Save verse</string>
     <string name="title_activity_display_bible_verse">My Bible Verse</string>
     <string name="back">Back</string>
+    <string name="bible_character">Favourite biblical character:</string>
+    <string name="current_character">No favourite biblical character given.</string>
+    <string name="add_character">Add favourite character</string>
 
 </resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Bible Verse</string>
+    <string name="action_settings">Settings</string>
+    <string name="new_verse_button">See todays bible verse</string>
+    <string name="bibel_verse">Bible Verse Coming</string>
+    <string name="save_verse">Save verse</string>
+    <string name="title_activity_display_bible_verse">My Bible Verse</string>
+    <string name="back">Back</string>
+    <string name="bible_character">Favourite biblical character:</string>
+    <string name="current_character">No favourite biblical character given.</string>
+    < <string name="add_character">Add favourite character</string>
+
+</resources>

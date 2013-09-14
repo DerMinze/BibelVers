@@ -1,0 +1,85 @@
+package com.example.bibelvers;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+
+	private String FILENAME = "favourite_character";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        checkForCharacter();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    
+    public void getVerse(View view) {
+    	Intent intent = new Intent(this, DisplayBibleVerse.class);
+        startActivity(intent);
+    }
+    
+    public void checkForCharacter() {
+    	try{
+    		FileInputStream inputStream = openFileInput(FILENAME);
+    		BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+    		     
+    		StringBuilder total = new StringBuilder();
+    		String line;
+    		     
+    		while ((line = r.readLine()) != null) {
+    			total.append(line);
+    		}
+    		
+    		r.close();    
+    		inputStream.close();
+    		
+    		TextView textView = (TextView) findViewById(R.id.current_character);
+    		textView.setText("Your favourite biblical character is " + total);
+    		         
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	/*File file = new File("favourite_character.txt");
+    	if(file.exists()) {
+    		try {
+				FileInputStream in = openFileInput("favourite_character");
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	System.out.println("File doesn't exists...");*/
+    }
+    
+	public void saveCharacter(View view) throws IOException {
+    	EditText editText = (EditText) findViewById(R.id.bible_character);
+    	String character = editText.getText().toString();
+		
+    	FileOutputStream out = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+    	out.write(character.getBytes());
+		out.close();
+		
+		editText.setEnabled(false);
+    }
+}
