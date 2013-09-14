@@ -1,4 +1,3 @@
 INDEX VERSION 1.126+C:\Users\Anders\Documents\GitHub\BibelVers\.metadata\.plugins\org.eclipse.jdt.core
-332375439.index
 3408437669.index
 2125047380.index
