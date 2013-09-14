@@ -1,0 +1,12 @@
+import java.net.URL;
+
+import android.os.AsyncTask;
+
+
+public class MyAsyncClass extends AsyncTask<String, Integer, Long> {
+	
+	@Override
+	protected String doInBackground(String mjau) {
+		// TODO Auto-generated method stub
+		return "hei";
+	}}

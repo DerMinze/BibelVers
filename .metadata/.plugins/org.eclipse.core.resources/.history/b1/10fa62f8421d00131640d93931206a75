@@ -1,0 +1,9 @@
+import android.os.AsyncTask;
+
+
+public class MyAsyncClass extends AsyncTask{
+	
+	protected String doInBackground() {
+		
+	}
+}

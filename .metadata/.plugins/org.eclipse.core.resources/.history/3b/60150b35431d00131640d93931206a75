@@ -1,0 +1,11 @@
+import android.os.AsyncTask;
+
+
+public class MyAsyncClass extends AsyncTask<URL, Integer, Long> {
+
+
+	@Override
+	protected Long doInBackground(URL... params) {
+		// TODO Auto-generated method stub
+		return null;
+	}}

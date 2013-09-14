@@ -1,3 +1,4 @@
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="org.apache.http.client.HttpClient"><rhs name\="org.apache.http.impl.client.DefaultHttpClient"/></lhs><lhs name\="org.apache.http.client.methods.HttpRequestBase"><rhs name\="org.apache.http.client.methods.HttpGet"/></lhs><lhs name\="org.apache.http.client.methods.HttpUriRequest"><rhs name\="org.apache.http.client.methods.HttpGet"/></lhs><lhs name\="org.apache.http.client.methods.AbortableHttpRequest"><rhs name\="org.apache.http.client.methods.HttpGet"/></lhs><lhs name\="java.lang.Cloneable"><rhs name\="org.apache.http.client.methods.HttpGet"/></lhs><lhs name\="org.apache.http.HttpRequest"><rhs name\="org.apache.http.client.methods.HttpGet"/></lhs><lhs name\="org.apache.http.HttpMessage"><rhs name\="org.apache.http.client.methods.HttpGet"/></lhs><lhs name\="org.apache.http.message.AbstractHttpMessage"><rhs name\="org.apache.http.client.methods.HttpGet"/></lhs><lhs name\="org.apache.http.client.methods.HttpGet"><rhs name\="org.apache.http.client.methods.HttpGet"/></lhs><lhs name\="android.net.ConnectivityManager"><rhs name\="android.net.ConnectivityManager"/></lhs><lhs name\="java.lang.Readable"><rhs name\="java.io.BufferedReader"/><rhs name\="java.io.InputStreamReader"/></lhs><lhs name\="java.io.Closeable"><rhs name\="java.io.BufferedReader"/><rhs name\="java.io.InputStreamReader"/></lhs><lhs name\="java.io.Reader"><rhs name\="java.io.BufferedReader"/><rhs name\="java.io.InputStreamReader"/></lhs><lhs name\="java.io.BufferedReader"><rhs name\="java.io.BufferedReader"/></lhs></history>
 content_assist_number_of_computers=12
 content_assist_proposals_background=255,255,255
 content_assist_proposals_foreground=0,0,0
@@ -6,6 +7,10 @@ fontPropagated=true
 org.eclipse.jdt.ui.editor.tab.width=
 org.eclipse.jdt.ui.formatterprofiles.version=12
 org.eclipse.jdt.ui.javadoclocations.migrated=true
+org.eclipse.jdt.ui.text.code_templates_migrated=true
+org.eclipse.jdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+org.eclipse.jdt.ui.text.custom_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+org.eclipse.jdt.ui.text.templates_migrated=true
 org.eclipse.jface.textfont=1|Courier New|10.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Courier New;
 proposalOrderMigrated=true
 spelling_locale_initialized=true

@@ -1,0 +1,13 @@
+import java.net.URL;
+
+import android.os.AsyncTask;
+
+
+class MyAsyncClass extends AsyncTask<String, Void, String> {
+
+	@Override
+	protected String doInBackground(String... urls) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
