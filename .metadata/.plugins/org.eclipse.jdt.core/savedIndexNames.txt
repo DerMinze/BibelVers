@@ -1,0 +1,2 @@
+INDEX VERSION 1.126+C:\Users\Anders\Documents\GitHub\BibelVers\.metadata\.plugins\org.eclipse.jdt.core
+3408437669.index
