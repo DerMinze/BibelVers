@@ -1,0 +1,20 @@
+import android.provider.BaseColumns;
+
+public final class SQLReader {
+	public SQLReader() {}
+	
+	public static abstract class SQLFeedEntry implements BaseColumns {
+		public static final String TABLE_NAME = "bibleverse";
+		public static final String COLUMN_NAME_ENTRY_ID = "verseid";
+		public static final String COLUMN_NAME_TITLE = "title";
+		public static final String COLUMN_NAME_SUBTITLE = "subtitle";
+	}
+	
+	private static final String TEXT_TYPE = " TEXT ";
+	private static final String COMMA_SEP = ",";
+	private static final String SQL_CREATE_ENTRIES = "CREATE TABLE " + SQLFeedEntry.TABLE_NAME + " (" + 
+								SQLFeedEntry._ID + " INTEGER PRIMARY KEY," + SQLFeedEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + 
+								COMMA_SEP + SQLFeedEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP + " )";
+	
+	private static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + SQLFeedEntry.TABLE_NAME;
+}

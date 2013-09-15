@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
     		inputStream.close();
     		
     		TextView textView = (TextView) findViewById(R.id.current_character);
-    		textView.setText(Html.fromHtml("Your favourite biblical character is <b>" + total + "</b>"));
+    		textView.setText(Html.fromHtml("Your favourite biblical character is <b>" + total + "</b>."));
     		         
     	} catch (Exception e) {
     		e.printStackTrace();
@@ -76,12 +76,13 @@ public class MainActivity extends Activity {
     		return;
     	}
 		
+    	character = character.trim();
     	FileOutputStream out = openFileOutput(FILENAME, Context.MODE_PRIVATE);
     	out.write(character.getBytes());
 		out.close();
 		
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(editText.getWindowToken(),
+		imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 		checkForCharacter();
     }
 }

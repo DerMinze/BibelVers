@@ -1,0 +1,87 @@
+package com.example.bibelvers;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.Html;
+import android.view.Menu;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+
+	private String FILENAME = "favourite_character";
+	
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        checkForCharacter();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    
+    public void getVerse(View view) {
+    	// Starts activity two.
+    	Intent intent = new Intent(this, DisplayBibleVerse.class);
+        startActivity(intent);
+    }
+    
+    public void checkForCharacter() {
+    	// Checks if user already has set a favourite biblical character, then displays it.
+    	try{
+    		FileInputStream inputStream = openFileInput(FILENAME);
+    		BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+    		     
+    		StringBuilder total = new StringBuilder();
+    		String line;
+    		     
+    		while ((line = r.readLine()) != null) {
+    			total.append(line);
+    		}
+    		
+    		r.close();    
+    		inputStream.close();
+    		
+    		TextView textView = (TextView) findViewById(R.id.current_character);
+    		textView.setText(Html.fromHtml("Your favourite biblical character is <b>" + total + "</b>"));
+    		         
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+	public void saveCharacter(View view) throws IOException {
+		// Saves users favourite character to file and updates the TextView.
+    	EditText editText = (EditText) findViewById(R.id.bible_character);
+    	String character = editText.getText().toString();
+    	
+    	if(character.isEmpty()) {
+    		return;
+    	}
+		
+    	FileOutputStream out = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+    	out.write(character.getBytes());
+		out.close();
+		
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(editText.getWindowToken(),
+		checkForCharacter();
+    }
+}

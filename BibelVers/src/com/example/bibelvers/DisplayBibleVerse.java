@@ -8,6 +8,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
@@ -19,13 +22,15 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 public class DisplayBibleVerse extends Activity {
 	
 	private static final String DEBUG_TAG = "HttpExample";
-	public final String DOWNLOADFROM = "http://www.biblegateway.com/votd/get/?format=atom";
+	public final String DOWNLOADFROM = "http://www.biblegateway.com/votd/get/?format=json";
 	public TextView textView;
+	public String completeVerse = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +89,7 @@ public class DisplayBibleVerse extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			// Sets text in textView.
+			completeVerse = result;
 			textView.setText(result);
 		}
 		
@@ -123,7 +129,7 @@ public class DisplayBibleVerse extends Activity {
 			while((str = buffer.readLine()) != null) {
 				if(str.indexOf("content") > -1) {
 					String temp = str;
-					String bibelVerse = manipulateVerse(temp);
+					String bibelVerse = getBibleVerse(temp);
 					return bibelVerse;
 				}
 			}
@@ -131,28 +137,33 @@ public class DisplayBibleVerse extends Activity {
 		}
 	}
 	
-	public String manipulateVerse(String verse) {
-		// Manipulates the downloaded string to get what I want.
-		int i = 0;
-		int j = 0;
-		boolean quit = false;
-		
-		while(i <verse.length() && quit != true){
-			if(verse.charAt(i) == ']'){
-				verse = verse.substring(i + 3);
-				quit = true;
-			}
-			i++;
+	public String getBibleVerse(String rawJson) {
+		JSONObject json = null;
+		/* 
+		  * Expected format:
+		   * {"votd":{
+		   *   "text": "...",
+		   *   "content": "...",
+		   *   "care",
+		   *  }
+		   * }
+		   */
+		try {
+			json = new JSONObject(rawJson);
+			JSONObject votd = json.getJSONObject("votd");
+			return votd.getString("content");
+		} catch (JSONException ex) {
+			Log.e("WUT", "WHY!?");
+			return null;
+		} 
+	}
+	
+	public void saveVerse(View view) {
+		SQLFeedReader db = new SQLFeedReader(this);
+		long test = db.insertVerse(completeVerse);
+		if(test > -1) {
+			TextView saved = (TextView) findViewById(R.id.verse_saved);
+			saved.setText("You bible verse is saved!");
 		}
-		quit = false;
-		while(j <verse.length() && quit != true){
-			if(verse.charAt(j) == '&'){
-				verse = verse.substring(0, j);
-				quit = true;
-			}
-			j++;
-		}
-		return verse;
 	}
 }
-

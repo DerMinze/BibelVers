@@ -1,0 +1,20 @@
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+
+public class SQLFeedReader extends SQLiteOpenHelper {
+	private static final String TAG = "SQLFeedReader";
+	
+	public static final String TABLE_NAME = "entry";
+    public static final String COLUMN_NAME_ENTRY_ID = "entryid";
+    public static final String COLUMN_NAME_TITLE = "title";
+    public static final String COLUMN_NAME_SUBTITLE = "subtitle";
+    
+    private static final String TEXT_TYPE = " TEXT";
+    private static final String COMMA_SEP = ",";
+    
+    public SQLFeedReader(Context context) {
+    	super(context, DB_NAME, null, DB_VERSION);
+    }
+}
