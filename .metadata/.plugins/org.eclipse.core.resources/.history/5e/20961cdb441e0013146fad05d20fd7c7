@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
     }
     
     public void checkForCharacter() {
-    	// Checks if user already has set a favorite biblical character, then displays it.
+    	// Checks if user already has set a favourite biblical character, then displays it.
     	try{
     		FileInputStream inputStream = openFileInput(FILENAME);
     		BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
@@ -68,7 +68,7 @@ public class MainActivity extends Activity {
     }
     
 	public void saveCharacter(View view) throws IOException {
-		// Saves users favorite character to file and updates the TextView.
+		// Saves users favourite character to file and updates the TextView.
     	EditText editText = (EditText) findViewById(R.id.bible_character);
     	String character = editText.getText().toString();
     	

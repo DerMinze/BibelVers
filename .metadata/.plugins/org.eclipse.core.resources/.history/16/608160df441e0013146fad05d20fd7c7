@@ -68,7 +68,7 @@ public class MainActivity extends Activity {
     }
     
 	public void saveCharacter(View view) throws IOException {
-		// Saves users favorite character to file and updates the TextView.
+		// Saves users favourite character to file and updates the TextView.
     	EditText editText = (EditText) findViewById(R.id.bible_character);
     	String character = editText.getText().toString();
     	

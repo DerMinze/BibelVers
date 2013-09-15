@@ -164,8 +164,6 @@ public class DisplayBibleVerse extends Activity {
 		TextView saved = (TextView) findViewById(R.id.verse_saved);
 		if(test > -1) {
 			saved.setText("You bible verse is saved!");
-		} else {
-			saved.setText("Something went wrong, your biblical verse was not saved.");
 		}
 	}
 }

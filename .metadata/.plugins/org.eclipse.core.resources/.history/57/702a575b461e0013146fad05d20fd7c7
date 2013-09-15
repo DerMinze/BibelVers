@@ -161,11 +161,9 @@ public class DisplayBibleVerse extends Activity {
 	public void saveVerse(View view) {
 		SQLFeedReader db = new SQLFeedReader(this);
 		long test = db.insertVerse(completeVerse);
-		TextView saved = (TextView) findViewById(R.id.verse_saved);
 		if(test > -1) {
+			TextView saved = (TextView) findViewById(R.id.verse_saved);
 			saved.setText("You bible verse is saved!");
-		} else {
-			saved.setText("Something went wrong, your biblical verse was not saved.");
 		}
 	}
 }
